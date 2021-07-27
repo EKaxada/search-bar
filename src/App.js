@@ -10,7 +10,6 @@ myTrie.insert("world");
 
 function App() {
   const [prefix, setPrefix] = useState("");
-  const [predictions, setPredictions] = useState(null);
   const [suggestion, setSuggestion] = useState('');
 
   const onChange = (e) => {
@@ -20,34 +19,25 @@ function App() {
       return a.length - b.length;
     });
     if (found_words.length>0) {
-      setPredictions(found_words);
       setSuggestion(found_words[0]);
     } else if(found_words.length === 0){
-      setPredictions(null)
       setSuggestion('');
     }
-  }
-
-  if (predictions !== null) {
-    var listItems = predictions.map((prediction, index) => (
-      <option key={index} value={prediction} />
-    ));
   }
 
   return (
     <div className="App">
       <input
         list="words"
-        type="search"
+        type="text"
         name="search-bar"
         id="search-bar"
         placeholder="Search..."
         value={prefix}
         onChange={onChange}
       />
-      <datalist id="words">{listItems}</datalist>
       <input
-        type="search"
+        type="text"
         name="search-bar2"
         id="search-bar2"
         value={prefix.length>0?suggestion:''}
