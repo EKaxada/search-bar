@@ -1,0 +1,46 @@
+body, html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 24px;
+}
+
+
+.App {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+ }
+
+ input {
+     font-size: inherit;
+     padding-left: 0.5rem;
+     height: 2rem;
+     width: 15rem;
+     border: 1px solid gray;
+     position: absolute;
+     border-radius: 50px;
+     -webkit-border-radius: 50px;
+     -moz-border-radius: 50px;
+     -ms-border-radius: 50px;
+     -o-border-radius: 50px;
+    
+}
+
+#search-bar {
+    background-color: transparent;
+}
+
+#search-bar2 {
+    z-index: -1;
+    color: gray;
+}
+
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+datalist {
+    appearance: none;
+}
