@@ -21,13 +21,20 @@ function App() {
       return a.length - b.length;
     });
     var first_word = found_words[0];
-    if (value !== "" && value[value.length - 1] !== " ") {
+    if (found_words.length!== 0 && value !== "" && value[value.length - 1] !== " ") {
       if (first_word!= null) {
         var remainder = first_word.slice(trie_prefix.length);
         setSuggestion(value + remainder);
-      }
-    }
+      } 
+      
+    }else{setSuggestion(value)}
   };
+
+  const handleKeyDown = e => {
+    if(e.keyCode === 39){
+      setPrefix(suggestion)
+    }
+  }
 
   return (
     <div className="App">
@@ -39,6 +46,7 @@ function App() {
         placeholder="Search..."
         value={prefix}
         onChange={onChange}
+        onKeyDown={handleKeyDown}
       />
       <input
         readOnly={true}
