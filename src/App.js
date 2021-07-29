@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Trie from "./trie.js";
 import "./App.css";
+import {words} from './dict.js'
+
 var myTrie = new Trie();
-myTrie.insert("car");
-myTrie.insert("helium");
-myTrie.insert("carpet");
-myTrie.insert("hello");
-myTrie.insert("world");
+for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if(word.length !== 0){
+      myTrie.insert(word)
+    }
+}
 
 function App() {
   const [prefix, setPrefix] = useState("");
@@ -44,7 +47,6 @@ function App() {
   return (
     <div className="App">
       <input
-        list="words"
         type="text"
         name="search-bar"
         id="search-bar"
@@ -55,10 +57,9 @@ function App() {
       />
       <input
         type="text"
-        name="search-bar2"
+        name="search-bar"
         id="search-bar2"
         value={suggestion}
-        onChange={(e) => setSuggestion(e.target.value)}
       />
     </div>
   );
