@@ -6,9 +6,7 @@ import {words} from './dict.js'
 var myTrie = new Trie();
 for (let i = 0; i < words.length; i++) {
     const word = words[i];
-    if(word.length !== 0){
-      myTrie.insert(word)
-    }
+    myTrie.insert(word)
 }
 
 function App() {
