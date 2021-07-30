@@ -1,23 +1,39 @@
 import { useState } from "react";
 import Trie from "./trie.js";
 import "./App.css";
-import {words} from './dict.js'
 
-var myTrie = new Trie();
-for (let i = 0; i < words.length; i++) {
-    const word = words[i];
-    myTrie.insert(word)
+const dictionary = {
+  words: ['hello','helium','world','car','carpet','test','this','that','those','working','is']
 }
 
 function App() {
   const [prefix, setPrefix] = useState("");
   const [suggestion, setSuggestion] = useState("");
 
+  // const getWords = async() => {
+  //   const url = 'https://raw.githubusercontent.com/EKaxada/webster-words/main/dict.json'
+  //   const res = await fetch(url, {
+  //     method: 'GET'
+  //   });
+  //   return await res.json();
+  // }
+
+  var myTrie = new Trie();
+
+  (async()=>{
+    // const dictionary = await getWords();
+    const words = dictionary.words;
+    for (let i = 0; i < words.length; i++) {
+        const word = words[i];
+        myTrie.insert(word)
+    }
+  })();
+
   const onChange = (e) => {
     var value = e.target.value;
     setPrefix(value);
     var words = value.split(" ");
-    var trie_prefix = words[words.length - 1];
+    var trie_prefix = words[words.length - 1].toLowerCase();
     var found_words = myTrie.find(trie_prefix).sort((a, b) => {
       return a.length - b.length;
     });
